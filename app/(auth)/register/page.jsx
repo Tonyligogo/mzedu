@@ -17,7 +17,7 @@ function MemberSignUp() {
             className=""
           />
         </div>
-      <div className="p-4 h-[calc(100vh-76px)] overflow-y-auto">
+      <div className="h-[calc(100vh-76px)] overflow-y-auto">
         <RegisterForm />
       </div>
     </div>

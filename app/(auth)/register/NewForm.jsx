@@ -6,7 +6,6 @@ import { Label } from "@/components/ui/label";
 import { signUpMember } from "@/services/members";
 import { RegistrationSchema } from "@/validation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -49,40 +48,6 @@ const steps = [
     icon: Lock,
   },
 ];
-
-const StepIndicator = ({ currentStep }) => (
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 space-x-2">
-    {steps.map((step, index) => {
-      const isCurrent = index === currentStep;
-      const isCompleted = index < currentStep;
-      const Icon = step.icon;
-      return (
-        <div key={step.name} className="flex-shrink-0 flex items-center md:flex-1 gap-2">
-          <Icon className={`size-6
-                ${
-                    isCurrent
-                    ? "text-blue-600"
-                    : isCompleted
-                    ? "text-green-500"
-                    : "text-gray-600"
-                }
-                `} />
-          <p
-            className={`text-sm text-center font-medium ${
-                isCurrent
-                ? "text-blue-600"
-                : isCompleted
-                ? "text-green-500"
-                : "text-gray-600"
-            }`}
-          >
-            {step.name}
-          </p>
-        </div>
-      );
-    })}
-  </div>
-);
 
 const validateStep = async (values, stepIndex, validationSchema) => {
   const stepFields = steps[stepIndex].fields;
@@ -174,9 +139,8 @@ function RegisterForm() {
       <div className="">
         <div className="w-full relative md:max-w-3xl mx-auto">
           <div className="md:w-3xl">
-        <StepIndicator currentStep={currentStep} />
-            <h1 className="text-2xl md:text-4xl font-semibold mb-2">
-              Welcome to Mzedu SACCO
+            <h1 className="text-2xl md:text-4xl font-semibold mb-1">
+              Create account
             </h1>
             <p className=" text-gray-500">Setup your personal account</p>
           </div>
@@ -205,7 +169,7 @@ function RegisterForm() {
               <Form className="space-y-6 mt-6">
                 {currentStep === 0 && (
                   <section>
-                    <h2 className="text-2xl mb-6 flex items-center gap-2 text-gray-600">
+                    <h2 className="text-xl md:text-2xl mb-6 flex items-center gap-2 text-gray-600">
                       <UserPlus className="w-6 h-6" />
                       Step 1: Personal Details
                     </h2>
@@ -372,7 +336,7 @@ function RegisterForm() {
                 {/* STEP 2: Identification */}
                 {currentStep === 1 && (
                   <section>
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-600">
+                    <h2 className="text-xl md:text-2xl mb-6 flex items-center gap-2 text-gray-600">
                       <Fingerprint className="w-6 h-6" />
                       Step 2: Identification
                     </h2>
@@ -449,7 +413,7 @@ function RegisterForm() {
                 {/* STEP 3: Employment */}
                 {currentStep === 2 && (
                   <section>
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-600">
+                    <h2 className="text-xl md:text-2xl mb-6 flex items-center gap-2 text-gray-600">
                       <Briefcase className="w-6 h-6" />
                       Step 3: Employment
                     </h2>
@@ -512,7 +476,7 @@ function RegisterForm() {
                 {/* STEP 4: Security */}
                 {currentStep === 3 && (
                   <section>
-                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-600">
+                    <h2 className="text-xl md:text-2xl mb-6 flex items-center gap-2 text-gray-600">
                       <Lock className="w-6 h-6" />
                       Step 4: Security
                     </h2>
@@ -606,7 +570,7 @@ function RegisterForm() {
                       type="button"
                       variant="outline"
                       onClick={() => setCurrentStep((prev) => prev - 1)}
-                      className="h-10 text-lg font-semibold"
+                      className="h-10 hover:text-black cursor-pointer"
                     >
                       Previous
                     </Button>
@@ -616,19 +580,19 @@ function RegisterForm() {
                     <Button
                       type="button"
                       onClick={() => handleNext(values, setErrors)}
-                      className={`h-10 text-lg font-semibold text-white transition-colors ${
+                      className={`h-10 text-white cursor-pointer ${
                         currentStep === 0 ? "ml-auto" : ""
                       }`}
                       disabled={loading}
                     >
-                      {loading ? "Checking..." : "Next Step"}
+                      {loading ? "..." : "Next Step"}
                     </Button>
                   )}
 
                   {isLastStep && (
                     <Button
                       type="submit"
-                      className="w-full md:w-auto h-12 text-lg font-semibold text-white transition-colors ml-auto"
+                      className="cursor-pointer h-10 text-white"
                       disabled={loading}
                     >
                       {loading ? "Registering..." : "Register Now"}
