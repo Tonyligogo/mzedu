@@ -7,15 +7,17 @@ import RegisterForm from "./NewForm";
 
 function MemberSignUp() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <Image
-                        src="/mzeduLogo-noBg.png"
-                        alt="Mzedu SACCO Logo"
-                        width={100}
-                        height={100}
-                        className="mx-auto absolute top-4 left-4"
-                      />
-      <div className="relative h-screen p-4 overflow-y-auto">
+    <div className="h-screen">
+        <div className="bg-white z-50 h-[76px] p-4">
+          <Image
+            src="/mzeduLogo-noBg.png"
+            alt="Mzedu SACCO Logo"
+            width={100}
+            height={100}
+            className=""
+          />
+        </div>
+      <div className="p-4 h-[calc(100vh-76px)] overflow-y-auto">
         <RegisterForm />
       </div>
     </div>

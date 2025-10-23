@@ -51,13 +51,13 @@ const steps = [
 ];
 
 const StepIndicator = ({ currentStep }) => (
-  <div className="md:max-w-3xl md:mx-auto flex justify-between items-center mb-8 space-x-2">
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 space-x-2">
     {steps.map((step, index) => {
       const isCurrent = index === currentStep;
       const isCompleted = index < currentStep;
       const Icon = step.icon;
       return (
-        <div key={step.name} className="flex items-center flex-1 gap-2">
+        <div key={step.name} className="flex-shrink-0 flex items-center md:flex-1 gap-2">
           <Icon className={`size-6
                 ${
                     isCurrent
@@ -171,11 +171,11 @@ function RegisterForm() {
 
   return (
     <div className="">
-      <div className="p-8">
-        <div className="w-full relative md:max-w-4xl mx-auto">
-          <div className="fixed md:w-4xl z-50 bg-white">
+      <div className="">
+        <div className="w-full relative md:max-w-3xl mx-auto">
+          <div className="md:w-3xl">
         <StepIndicator currentStep={currentStep} />
-            <h1 className="text-3xl sm:text-4xl font-semibold mb-2">
+            <h1 className="text-2xl md:text-4xl font-semibold mb-2">
               Welcome to Mzedu SACCO
             </h1>
             <p className=" text-gray-500">Setup your personal account</p>
@@ -202,7 +202,7 @@ function RegisterForm() {
             onSubmit={handleSubmit}
           >
             {({ values, setErrors, setFieldValue }) => (
-              <Form className="space-y-6 pt-44">
+              <Form className="space-y-6 mt-6">
                 {currentStep === 0 && (
                   <section>
                     <h2 className="text-2xl mb-6 flex items-center gap-2 text-gray-600">
